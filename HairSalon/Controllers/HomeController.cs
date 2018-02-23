@@ -11,5 +11,26 @@ namespace HairSalon.Controllers
       {
         return View();
       }
+
+      [HttpGet("/stylist")]
+      public ActionResult Stylists()
+      {
+        List<Stylist> stylistList = Stylist.GetAllStylists();
+        return View(stylistList);
+      }
+
+      [HttpPost("/stylist")]
+      public ActionResult AddStylists()
+      {
+        string stylistName = Request.Form["stylistName"];
+        string stylistNumber = Request.Form["stylistNumber"];
+        int stylistTenure = int.Parse(Request.Form["stylistExperience"]);
+        string stylistSpecialty = Request.Form["stylistSpecialty"];
+        Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistTenure, stylistSpecialty);
+        newStylist.SaveStylist();
+        List<Stylist> stylistList = Stylist.GetAllStylists();
+
+        return View("Stylists", stylistList);
+      }
     }
   }

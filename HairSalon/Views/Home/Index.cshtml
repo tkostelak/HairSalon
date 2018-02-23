@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <title>lil-tammy's-salon-index</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+      <h1>Lil Tammy's Salon</h1>
+      </div>
+      <h4>Add a stylist to the site!</h4>
+        <form action="/stylist" method="post">
+          <label for="stylistName">Name</label>
+          <input type="text" name="stylistName">
+          <hr>
+          <label for="stylistNumber">Phone Number:</label>
+          <input type="text" name="stylistNumber">
+          <hr>
+          <label for="stylistExperience">Years of Experience:</label>
+          <input type="text" name="stylistExperience">
+          <hr>
+          <label for="stylistSpecialty">Specialty:</label>
+          <input type="text" name="stylistSpecialty">
+          <hr>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        <a href="/stylists">View stylist directory!</a>
+        </div>
+  </body>
+</html>
