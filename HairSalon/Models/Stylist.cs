@@ -91,43 +91,58 @@ namespace HairSalon.Models
              }
         }
 
-        public void SaveStylist()
-      {
-        MySqlConnection conn = DB.Connection();
-        conn.Open();
-
-        var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"Insert INTO stylists (name, number, tenure, specialty) VALUES (@stylistName, @stylistNumber, @stylistTenure, @stylistSpecialty);";
-
-        MySqlParameter name = new MySqlParameter();
-        name.ParameterName = "@stylistName";
-        name.Value = this._stylistName;
-        cmd.Parameters.Add(name);
-
-        MySqlParameter number = new MySqlParameter();
-        number.ParameterName = "@stylistNumber";
-        number.Value = this._stylistNumber;
-        cmd.Parameters.Add(number);
-
-        MySqlParameter tenure = new MySqlParameter();
-        tenure.ParameterName = "@stylistTenure";
-        tenure.Value = this._stylistTenure;
-        cmd.Parameters.Add(tenure);
-
-        MySqlParameter specialty = new MySqlParameter();
-        specialty.ParameterName = "@stylistSpecialty";
-        specialty.Value = this._stylistSpecialty;
-        cmd.Parameters.Add(specialty);
-
-        cmd.ExecuteNonQuery();
-        _stylistId = (int) cmd.LastInsertedId;
-
-        conn.Close();
-        if (conn != null)
+        public override bool Equals(System.Object otherStylist)
+        {
+          if (!(otherStylist is Stylist))
           {
-            conn.Dispose();
+            return false;
+          }
+          else
+          {
+            Stylist newStylist = (Stylist) otherStylist;
+            bool idEquality = (this.GetStylistId() == newStylist.GetStylistId());
+            bool stylistEquality = (this.GetStylistName() == newStylist.GetStylistName());
+            return (idEquality && stylistEquality);
           }
         }
+
+        public void SaveStylist()
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"Insert INTO stylists (name, number, tenure, specialty) VALUES (@stylistName, @stylistNumber, @stylistTenure, @stylistSpecialty);";
+
+          MySqlParameter name = new MySqlParameter();
+          name.ParameterName = "@stylistName";
+          name.Value = this._stylistName;
+          cmd.Parameters.Add(name);
+
+          MySqlParameter number = new MySqlParameter();
+          number.ParameterName = "@stylistNumber";
+          number.Value = this._stylistNumber;
+          cmd.Parameters.Add(number);
+
+          MySqlParameter tenure = new MySqlParameter();
+          tenure.ParameterName = "@stylistTenure";
+          tenure.Value = this._stylistTenure;
+          cmd.Parameters.Add(tenure);
+
+          MySqlParameter specialty = new MySqlParameter();
+          specialty.ParameterName = "@stylistSpecialty";
+          specialty.Value = this._stylistSpecialty;
+          cmd.Parameters.Add(specialty);
+
+          cmd.ExecuteNonQuery();
+          _stylistId = (int) cmd.LastInsertedId;
+
+          conn.Close();
+          if (conn != null)
+            {
+              conn.Dispose();
+            }
+          }
 
     }
   }

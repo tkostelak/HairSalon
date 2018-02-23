@@ -31,7 +31,7 @@ namespace HairSalon.Tests
     public void SaveStylist_AssignsIdToObject_Id()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Jamie Stephens","509-200-2000","3","Men's HairCuts", 0);
+      Stylist testStylist = new Stylist("Jamie Stephens","509-200-2000", "3" ,"Men's HairCuts", 0);
 
       //Act
       testStylist.SaveStylist();
