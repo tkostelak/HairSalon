@@ -11,10 +11,10 @@ namespace HairSalon.Models
     private int _stylistId;
     private string _stylistName;
     private string _stylistNumber;
-    private string _stylistTenure;
+    private int _stylistTenure;
     private string _stylistSpecialty;
 
-    public Stylist(string stylistName, string stylistNumber, string stylistTenure, string stylistSpecialty, int stylistId = 0)
+    public Stylist(string stylistName, string stylistNumber, int stylistTenure, string stylistSpecialty, int stylistId = 0)
     {
       _stylistId = stylistId;
       _stylistName = stylistName;
@@ -38,7 +38,7 @@ namespace HairSalon.Models
       return _stylistNumber;
     }
 
-    public string GetStylistTenure()
+    public int GetStylistTenure()
     {
       return _stylistTenure;
     }
@@ -61,7 +61,7 @@ namespace HairSalon.Models
         int stylistId = rdr.GetInt32(0);
         string stylistName = rdr.GetString(1);
         string stylistNumber = rdr.GetString(2);
-        string stylistTenure = rdr.GetString(3);
+        int stylistTenure = rdr.GetInt32(3);
         string stylistSpecialty = rdr.GetString(4);
         Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistTenure, stylistSpecialty, stylistId);
         allStylists.Add(newStylist);
