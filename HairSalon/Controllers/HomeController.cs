@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using MusicLibrary.Models;
+using HairSalon.Models;
 using System.Collections.Generic;
 
 namespace HairSalon.Controllers
@@ -11,3 +11,5 @@ namespace HairSalon.Controllers
       {
         return View();
       }
+    }
+  }

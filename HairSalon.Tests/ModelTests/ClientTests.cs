@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using HairSalon.Models;
 using System;
 
-namespace Client.Tests
+namespace HairSalon.Tests
 {
   [TestClass]
-  public class ClientTests : IDisposable
+  public class ClientTests
   {
-    public void Dispose()
-    {
-      Client.DeleteAll();
-    }
+
+  }
+}

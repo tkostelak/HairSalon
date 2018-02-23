@@ -16,11 +16,11 @@ namespace HairSalon.Models
 
     public Stylist(string stylistName, string stylistNumber, string stylistTenure, string stylistSpecialty, int stylistId = 0)
     {
-      _id = stylistId;
-      _name = stylistName;
-      _number = stylistNumber;
-      _tenure = stylistTenure;
-      _specialty = stylistSpecialty;
+      _stylistId = stylistId;
+      _stylistName = stylistName;
+      _stylistNumber = stylistNumber;
+      _stylistTenure = stylistTenure;
+      _stylistSpecialty = stylistSpecialty;
     }
 
     public int GetStylistId()
@@ -50,6 +50,7 @@ namespace HairSalon.Models
 
     public static List<Stylist> GetAll()
     {
+      return null;
       // List<Stylist> allStylists = new List<Stylist> {};
       // MySqlConnection conn = DB.Connection();
       // conn.Open();
@@ -74,7 +75,7 @@ namespace HairSalon.Models
       // return allStylists;
       }
 
-      public static void DeleteAll()
+      public static void DeleteAllStylists()
       {
         MySqlConnection conn = DB.Connection();
              conn.Open();
@@ -90,3 +91,5 @@ namespace HairSalon.Models
                  conn.Dispose();
              }
         }
+    }
+}
