@@ -35,7 +35,7 @@ namespace HairSalon
       });
       app.Run(async (context) =>
       {
-        await context.Response.WriteAsync("The music library isn't working.");
+        await context.Response.WriteAsync("Sorry, that path did not load correctly.");
       });
     }
   }

@@ -15,7 +15,7 @@ namespace HairSalon.Tests
     }
     public StylistTests()
     {
-      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;tyler_kostelak_test;";
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=tyler_kostelak_test;";
     }
     [TestMethod]
     public void GetAll_DataBaseAtFirst_0()

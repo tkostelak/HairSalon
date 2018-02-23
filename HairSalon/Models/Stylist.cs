@@ -50,29 +50,28 @@ namespace HairSalon.Models
 
     public static List<Stylist> GetAll()
     {
-      return null;
-      // List<Stylist> allStylists = new List<Stylist> {};
-      // MySqlConnection conn = DB.Connection();
-      // conn.Open();
-      // MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      // cmd.CommandText = @"SELECT * FROM stylists ORDER BY stylist ASC;";
-      // MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-      // while(rdr.Read())
-      // {
-      //   int stylistId = rdr.GetInt32(0);
-      //   string stylistName = rdr.GetString(1);
-      //   string stylistNumber = rdr.GetString(2);
-      //   string stylistTenure = rdr.GetString(3);
-      //   string stylistSpecialty = rdr.GetString(4);
-      //   Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistTenure, stylistSpecialty, stylistId);
-      //   allStylists.Add(newStylist);
-      // }
-      // conn.Close();
-      // if (conn !=null)
-      // {
-      //   conn.Dispose();
-      // }
-      // return allStylists;
+      List<Stylist> allStylists = new List<Stylist> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM stylists ORDER BY name ASC;";
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int stylistId = rdr.GetInt32(0);
+        string stylistName = rdr.GetString(1);
+        string stylistNumber = rdr.GetString(2);
+        string stylistTenure = rdr.GetString(3);
+        string stylistSpecialty = rdr.GetString(4);
+        Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistTenure, stylistSpecialty, stylistId);
+        allStylists.Add(newStylist);
+      }
+      conn.Close();
+      if (conn !=null)
+      {
+        conn.Dispose();
+      }
+      return allStylists;
       }
 
       public static void DeleteAllStylists()
@@ -81,7 +80,7 @@ namespace HairSalon.Models
              conn.Open();
 
              var cmd = conn.CreateCommand() as MySqlCommand;
-             cmd.CommandText = @"DELETE FROM stylist;";
+             cmd.CommandText = @"DELETE FROM stylists;";
 
              cmd.ExecuteNonQuery();
 
