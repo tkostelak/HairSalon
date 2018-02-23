@@ -21,11 +21,28 @@ namespace HairSalon.Tests
     public void GetAll_DataBaseAtFirst_0()
     {
       //Arrange, Act
-      int result = Stylist.GetAll().Count;
+      int result = Stylist.GetAllStylists().Count;
       Console.WriteLine("This is the number of Stylists in the result list: " + result);
 
       //Assert
       Assert.AreEqual(0, result);
+    }
+    [TestMethod]
+    public void SaveStylist_AssignsIdToObject_Id()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Jamie Stephens","509-200-2000","3","Men's HairCuts", 0);
+
+      //Act
+      testStylist.SaveStylist();
+      Stylist savedStylist = Stylist.GetAllStylists()[0];
+      int result = savedStylist.GetStylistId();
+      int testId = testStylist.GetStylistId();
+      Console.WriteLine(result);
+      Console.WriteLine(testId);
+
+      //Assert
+      Assert.AreEqual(testId, result);
     }
   }
 }
