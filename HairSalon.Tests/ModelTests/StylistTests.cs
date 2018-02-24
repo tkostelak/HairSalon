@@ -9,14 +9,17 @@ namespace HairSalon.Tests
   [TestClass]
   public class StylistTests : IDisposable
   {
-    public void Dispose()
-    {
-      Stylist.DeleteAllStylists();
-    }
     public StylistTests()
     {
       DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=tyler_kostelak_test;";
     }
+
+    public void Dispose()
+    {
+      Stylist.DeleteAllStylists();
+      Client.DeleteAllClients();
+    }
+
     [TestMethod]
     public void GetAll_DataBaseAtFirst_0()
     {
