@@ -44,5 +44,20 @@ namespace HairSalon.Tests
       //Assert
       Assert.AreEqual(testId, result);
     }
+    [TestMethod]
+    public void Find_FindsStylistInDataBase_Stylist()
+    {
+    //Arrange
+    Stylist testStylist = new Stylist("Jamie Stephens","509-200-2000", 3 ,"Men's HairCuts", 0);
+    testStylist.SaveStylist();
+
+    //Act
+    Stylist foundStylist = Stylist.Find(testStylist.GetStylistId());
+
+    //Assert
+    Assert.AreEqual(testStylist, foundStylist);
+    }
+
+
   }
 }
