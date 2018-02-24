@@ -14,12 +14,12 @@
       {
         foreach (var stylist in Model)
         {
-          <h3>@stylist.GetStylistName()</h3>
+          <h3><a href="/stylist/@stylist.GetStylistId()">@stylist.GetStylistName()</h3>
           <hr>
         }
       }
       <hr>
-      <h4><a href="/">Add another stylist to the directory!</a></h4>
+      <h6><a href="/">Add another stylist to the directory!</a></h6>
     </div>
   </body>
 </html>

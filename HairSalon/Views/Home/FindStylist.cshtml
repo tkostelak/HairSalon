@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <title>stylist-specific</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        @if(Model!=null)
+        {
+          <h1>@Model.GetStylistName()</h1>
+          <h3>Phone Number: @Model.GetStylistNumber()</h3>
+          <h3>Years of Experience: @Model.GetStylistTenure()</h3>
+          <h3>Specialty: @Model.GetStylistSpecialty()</h3>
+        }
+      </div>
+      <a href="/stylist">View the directory of Stylists!</a>
+    </div>
+  </body>
+</html>
