@@ -128,6 +128,10 @@ namespace HairSalon.Models
           var cmd = conn.CreateCommand() as MySqlCommand;
           cmd.CommandText = @"SELECT * FROM stylists WHERE id = @thisId;";
 
+
+
+        
+
           MySqlParameter thisId = new MySqlParameter();
                thisId.ParameterName = "@thisId";
                thisId.Value = id;

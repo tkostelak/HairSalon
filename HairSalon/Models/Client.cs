@@ -13,7 +13,7 @@ namespace HairSalon.Models
     private int _clientId;
 
 
-    public Client(string clientName, int clientId = 0, int stylistId = 0)
+    public Client(string clientName, int clientId, int stylistId = 0)
     {
       _clientName = clientName;
       _clientId = clientId;
@@ -35,6 +35,11 @@ namespace HairSalon.Models
       }
     }
 
+    public override int GetHashCode()
+    {
+      return this.GetClientId().GetHashCode();
+    }
+
     public string GetClientName()
     {
       return _clientName;
@@ -50,13 +55,13 @@ namespace HairSalon.Models
       return _stylistId;
     }
 
-    public static List<Client> GetAllClients()
+    public static List<Client> GetClients()
     {
       List<Client> allClients = new List<Client> {};
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM clients ORDER BY name ASC;";
+      cmd.CommandText = @"SELECT * FROM clients WHERE id = @thisId;";
       MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())
       {
@@ -82,7 +87,7 @@ namespace HairSalon.Models
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"Insert INTO clients (name, id, stylist_id) VALUES (@clientName, @client_id, @stylist_id);";
+      cmd.CommandText = @"Insert INTO clients (name, id, stylist_id) VALUES (@clientName, @client_id, @thisstylist_id);";
 
       MySqlParameter name = new MySqlParameter();
       name.ParameterName = "@clientName";
@@ -95,7 +100,7 @@ namespace HairSalon.Models
       cmd.Parameters.Add(clientId);
 
       MySqlParameter stylistId = new MySqlParameter();
-      stylistId.ParameterName = "@stylist_id";
+      stylistId.ParameterName = "@thisstylist_id";
       stylistId.Value = this._stylistId;
       cmd.Parameters.Add(stylistId);
 
