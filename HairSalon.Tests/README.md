@@ -1,20 +1,20 @@
-#_Lil' Tammy's Salon App_
+# Lil' Tammy's Salon App
 
-###_.NET and MYSQL Exercise for Epicodus, 02/25/2018_
-###_By Tyler Kostelak_
+### .NET and MYSQL Exercise for Epicodus, 02/25/2018
+### By Tyler Kostelak
 
 ## Description
 _This website allows an employee at Lil Tammy's Salon to add stylists to the database, and assign clients to the stylists in the database._
 
 ## Specifications
-# User Stories
+### User Stories
 
 * _As a salon employee, I need to be able to see a list of all our stylists._
 * _As an employee, I need to be able to select a stylist, see their details, and see a list of all clients that belong to that stylist._
 * _As an employee, I need to add new stylists to our system when they are hired._
 * _As an employee, I need to be able to add new clients to a specific stylist. I should not be able to add a client if no stylists have been added._
 
-# Behavior Driven Development
+### Behavior Driven Development
 
 * _First, the employee should be able to add a stylist to the database._
 * _Next, the employee should be able to view all existing stylists in the database._
