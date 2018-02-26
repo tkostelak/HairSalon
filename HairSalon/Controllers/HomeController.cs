@@ -12,6 +12,12 @@ namespace HairSalon.Controllers
         return View();
       }
 
+      [HttpGet("/stylist/add-client")]
+      public ActionResult AddClient()
+      {
+        return View("AddClient");
+      }
+
       [HttpGet("/stylist")]
       public ActionResult Stylists()
       {
@@ -39,6 +45,7 @@ namespace HairSalon.Controllers
         Stylist newStylist = Stylist.Find(id);
         return View(newStylist);
       }
+
 
     }
   }

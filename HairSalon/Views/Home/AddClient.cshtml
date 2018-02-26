@@ -3,28 +3,23 @@
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
-    <title>stylist-specific</title>
+    <title>add-client</title>
   </head>
   <body>
     <div class="container">
       <div class="jumbotron">
-        @if(Model!=null)
-        {
-          <h1>@Model.GetStylistName()</h1>
-          <h3>Phone Number: @Model.GetStylistNumber()</h3>
-          <h3>Years of Experience: @Model.GetStylistTenure()</h3>
-          <h3>Specialty: @Model.GetStylistSpecialty()</h3>
-        }
+      <h1>Add a Client</h1>
       </div>
-      <hr>
       <h4>Add a client to this stylist.</h4>
         <form action="/stylist" method="post">
           <hr>
           <label for="clientName">Name</label>
           <input type="text" name="stylistName">
+          <hr>
           <button type="submit" class="btn btn-success">Submit</button>
-        <hr>
-      <a href="/stylist">Back to the directory of stylists</a>
-    </div>
+        </form>
+        <br>
+        <a href="/stylist">View stylist directory!</a>
+        </div>
   </body>
 </html>
