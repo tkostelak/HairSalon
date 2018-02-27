@@ -18,6 +18,7 @@ namespace HairSalon.Controllers
       {
         List<Stylist> stylistList = Stylist.GetAllStylists();
         return View(stylistList);
+
       }
 
       [HttpPost("/stylist")]
@@ -41,14 +42,18 @@ namespace HairSalon.Controllers
         return View(newStylist);
       }
 
+
       [HttpPost("/Client/Create")]
        public ActionResult AddClient()
-       {
-           string clientName = Request.Form["clientName"];
-           int stylistId = Int32.Parse(Request.Form["stylistId"]);
-           Client newClient = new Client(clientName, stylistId);
-           newClient.SaveClient();
-           return RedirectToAction("AddClient", new {id=stylistId});
+      {
+         string clientName = Request.Form["clientName"];
+         int stylistId = Int32.Parse(Request.Form["stylistId"]);
+         Client newClient = new Client(clientName, stylistId);
+         newClient.SaveClient();
+         var Client = new Client(clientName, stylistId);
+         List<Client> clientList = Client.GetClients();
+
+         return View("ClientConfirmation", clientList);
        }
     }
   }

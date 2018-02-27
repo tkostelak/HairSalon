@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using Microsoft.AspNetCore.Mvc;
 using HairSalon;
+using System.Linq;
 
 namespace HairSalon.Models
 {
@@ -14,8 +15,9 @@ namespace HairSalon.Models
     private string _stylistSpecialty;
     private int _clientId;
     private int _stylistId;
+    public List<Client> clientList = new List<Client>();
 
-    public Stylist(string stylistName, string stylistNumber, int stylistTenure, string stylistSpecialty, int clientId = 0, int stylistId = 0)
+    public Stylist(string stylistName, string stylistNumber, int stylistTenure, string stylistSpecialty,  int clientId = 0, int stylistId = 0)
     {
       _stylistName = stylistName;
       _clientId = clientId;
@@ -23,6 +25,7 @@ namespace HairSalon.Models
       _stylistTenure = stylistTenure;
       _stylistSpecialty = stylistSpecialty;
       _stylistId = stylistId;
+
     }
 
     public int GetClientId()
@@ -54,6 +57,39 @@ namespace HairSalon.Models
     {
       return _stylistSpecialty;
     }
+
+    public List<Client> GetClients()
+    {
+      List<Client> allClients = new List<Client> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM clients WHERE stylist_id = @stylistId;";
+
+      MySqlParameter stylistId = new MySqlParameter();
+      stylistId.ParameterName = "@stylistId";
+      stylistId.Value = this._stylistId;
+      cmd.Parameters.Add(stylistId);
+
+        var rdr = cmd.ExecuteReader() as MySqlDataReader;
+        while(rdr.Read())
+        {
+          int clientId = rdr.GetInt32(0);
+          string clientName = rdr.GetString(1);
+          int stylistID = rdr.GetInt32(2);
+          Client newClient = new Client(clientName, stylistID);
+
+          allClients.Add(newClient);
+        }
+
+        conn.Close();
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
+      return allClients;
+    }
+
 
     public static List<Stylist> GetAllStylists()
     {
