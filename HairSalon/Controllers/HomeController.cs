@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
 using System.Collections.Generic;
+using System;
 
 namespace HairSalon.Controllers
 {
@@ -24,7 +25,7 @@ namespace HairSalon.Controllers
       {
         string stylistName = Request.Form["stylistName"];
         string stylistNumber = Request.Form["stylistNumber"];
-        int stylistTenure = int.Parse(Request.Form["stylistExperience"]);
+        int stylistTenure = Int32.Parse(Request.Form["stylistExperience"]);
         string stylistSpecialty = Request.Form["stylistSpecialty"];
         Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistTenure, stylistSpecialty);
         newStylist.SaveStylist();
@@ -40,13 +41,14 @@ namespace HairSalon.Controllers
         return View(newStylist);
       }
 
-      [HttpPost("/stylist/{id}")]
-      public ActionResult AddClients()
-      {
-        string clientName = Request.Form["clientName"];
-
-
-        return RedirectToAction("Stylists", clientName);
-      }
+      [HttpPost("/Client/Create")]
+       public ActionResult AddClient()
+       {
+           string clientName = Request.Form["clientName"];
+           int stylistId = Int32.Parse(Request.Form["stylistId"]);
+           Client newClient = new Client(clientName, stylistId);
+           newClient.SaveClient();
+           return RedirectToAction("AddClient", new {id=stylistId});
+       }
     }
   }

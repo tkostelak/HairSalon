@@ -1,3 +1,4 @@
+@using HairSalon.Models
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,14 +15,17 @@
           <h3>Phone Number: @Model.GetStylistNumber()</h3>
           <h3>Years of Experience: @Model.GetStylistTenure()</h3>
           <h3>Specialty: @Model.GetStylistSpecialty()</h3>
-        }
+      	   <h3>Client List:</h3>
+				}
+				<hr>
       </div>
       <hr>
       <h4>Add a client to this stylist.</h4>
-        <form action="/stylist" method="post">
+        <form action="/client/create" method="post">
           <hr>
           <label for="clientName">Name</label>
           <input type="text" name="clientName">
+          <input type="hidden" name="stylistId" value="@Model.GetStylistId()">
           <button type="submit" class="btn btn-success">Submit</button>
         <hr>
       <a href="/stylist">Back to the directory of stylists</a>

@@ -8,15 +8,13 @@ namespace HairSalon.Models
 {
   public class Client
   {
+    private int _clientId;
     private string _clientName;
     private int _stylistId;
-    private int _clientId;
 
-
-    public Client(string clientName, int clientId, int stylistId = 0)
+    public Client(string clientName, int stylistId)
     {
       _clientName = clientName;
-      _clientId = clientId;
       _stylistId = stylistId;
     }
 
@@ -69,7 +67,7 @@ namespace HairSalon.Models
         string clientName = rdr.GetString(1);
         int stylistId = rdr.GetInt32(2);
 
-        Client newClient = new Client(clientName, clientId, stylistId);
+        Client newClient = new Client(clientName, stylistId);
         allClients.Add(newClient);
       }
       conn.Close();
@@ -79,7 +77,6 @@ namespace HairSalon.Models
       }
       return allClients;
       }
-
 
     public void SaveClient()
     {
@@ -158,7 +155,7 @@ namespace HairSalon.Models
 
              }
 
-             Client foundClient = new Client(clientName, stylistId, clientId);
+             Client foundClient = new Client(clientName, stylistId);
 
               conn.Close();
               if (conn != null)
