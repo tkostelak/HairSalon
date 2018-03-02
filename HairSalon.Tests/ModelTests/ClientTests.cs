@@ -19,7 +19,6 @@ namespace HairSalon.Tests
       Client.DeleteAllClients();
     }
 
-
     [TestMethod]
     public void GetAll_DataBaseAtFirst_0()
     {
@@ -34,6 +33,20 @@ namespace HairSalon.Tests
 
       //Assert
       Assert.AreEqual(0, result);
+    }
+    [TestMethod]
+    public void DeleteAllClients_DeletesAllClientsInDatabase_true()
+    {
+    //Arrange
+    Client testClient = new Client("Bob Macpherson", 3 , 3 );
+    testClient.SaveClient();
+
+    //Act
+    Client.DeleteAllClients();
+    int result = Client.GetAllClients().Count;
+
+    //Assert
+    Assert.AreEqual(result, 0);
     }
   }
 }

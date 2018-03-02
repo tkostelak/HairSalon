@@ -33,6 +33,33 @@ namespace HairSalon.Models
       }
     }
 
+//this method returns all stylists, and is mainly for testing.
+    public static List<Client> GetAllClients()
+    {
+      List<Client> allClients = new List<Client> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM clients ORDER BY name ASC;";
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int clientId = rdr.GetInt32(0);
+        string clientName = rdr.GetString(1);
+        int stylistId = rdr.GetInt32(2);
+
+        Client newClient = new Client(clientName, stylistId, clientId);
+        allClients.Add(newClient);
+      }
+      conn.Close();
+      if (conn !=null)
+      {
+        conn.Dispose();
+      }
+      return allClients;
+      }
+
+//This method returns clients that have same stylist id as current stylist user is viewing
     public List<Client> GetClients()
     {
       List<Client> allClients = new List<Client> {};

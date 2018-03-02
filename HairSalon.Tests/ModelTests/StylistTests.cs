@@ -30,6 +30,7 @@ namespace HairSalon.Tests
       //Assert
       Assert.AreEqual(0, result);
     }
+
     [TestMethod]
     public void SaveStylist_AssignsIdToObject_Id()
     {
@@ -47,6 +48,7 @@ namespace HairSalon.Tests
       //Assert
       Assert.AreEqual(testId, result);
     }
+
     [TestMethod]
     public void Find_FindsStylistInDataBase_Stylist()
     {
@@ -59,6 +61,21 @@ namespace HairSalon.Tests
 
     //Assert
     Assert.AreEqual(testStylist, foundStylist);
+    }
+
+    [TestMethod]
+    public void DeleteAllStylists_DeletesAllStylistsInDatabase_true()
+    {
+    //Arrange
+    Stylist testStylist = new Stylist("Jamie Stephens","509-200-2000", 3 , 0, 0);
+    testStylist.SaveStylist();
+
+    //Act
+    Stylist.DeleteAllStylists();
+    int result = Stylist.GetAllStylists().Count;
+
+    //Assert
+    Assert.AreEqual(result, 0);
     }
   }
 }
