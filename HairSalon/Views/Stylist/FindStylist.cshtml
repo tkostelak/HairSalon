@@ -14,10 +14,19 @@
           <h1>@Model.GetStylistName()</h1>
           <h3>Phone Number: @Model.GetStylistNumber()</h3>
           <h3>Years of Experience: @Model.GetStylistTenure()</h3>
-          <h3>Specialty: @Model.GetStylistSpecialty()</h3>
         }
       </div>
       <hr>
+        <h3>Clients assigned to this stylist:</h3>
+        @if(Model!=null)
+        {
+          foreach(var client in Model.GetClients())
+          {
+            <h5>@client.GetClientName()</h5>
+          }
+
+        }
+        <hr>
         <h2>Add client to this stylist</h2>
         <form action="/client/create" method="post">
           <label for="clientName">Name</label>
@@ -25,15 +34,6 @@
           <input type="hidden" name="stylistId" value="@Model.GetStylistId()">
           <button type="submit" class="btn btn-success">Submit</button>
         <hr>
-      <h3>Clients assigned to this stylist:</h3>
-      @if(Model!=null)
-      {
-        foreach(var client in Model.GetClients())
-        {
-          <h5>@client.GetClientName()</h5>
-        }
-
-      }
 
       <hr>
       <h3><a href="/stylist">Back to stylist directory</a></h3>

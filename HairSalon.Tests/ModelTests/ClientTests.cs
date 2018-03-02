@@ -23,20 +23,17 @@ namespace HairSalon.Tests
     [TestMethod]
     public void GetAll_DataBaseAtFirst_0()
     {
-      
-      //Arrange, Act
-      int result = Client.GetClients().Count;
+      //Arrange
+      string clientName = "James Taylor";
+      int stylistId = 1;
+      Client newClient = new Client(clientName, stylistId);
+
+      //Act
+      int result = newClient.GetClients().Count;
       Console.WriteLine("This is the number of Clients in the result list: " + result);
 
       //Assert
       Assert.AreEqual(0, result);
     }
-
-
-
-
-
-
-
   }
 }

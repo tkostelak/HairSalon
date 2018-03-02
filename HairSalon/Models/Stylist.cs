@@ -12,18 +12,16 @@ namespace HairSalon.Models
     private string _stylistName;
     private string _stylistNumber;
     private int _stylistTenure;
-    private string _stylistSpecialty;
     private int _clientId;
     private int _stylistId;
     public List<Client> clientList = new List<Client>();
 
-    public Stylist(string stylistName, string stylistNumber, int stylistTenure, string stylistSpecialty,  int clientId = 0, int stylistId = 0)
+    public Stylist(string stylistName, string stylistNumber, int stylistTenure, int clientId = 0, int stylistId = 0)
     {
       _stylistName = stylistName;
       _clientId = clientId;
       _stylistNumber = stylistNumber;
       _stylistTenure = stylistTenure;
-      _stylistSpecialty = stylistSpecialty;
       _stylistId = stylistId;
 
     }
@@ -51,11 +49,6 @@ namespace HairSalon.Models
     public int GetStylistTenure()
     {
       return _stylistTenure;
-    }
-
-    public string GetStylistSpecialty()
-    {
-      return _stylistSpecialty;
     }
 
     public List<Client> GetClients()
@@ -106,8 +99,7 @@ namespace HairSalon.Models
         int clientId = rdr.GetInt32(2);
         string stylistNumber = rdr.GetString(3);
         int stylistTenure = rdr.GetInt32(4);
-        string stylistSpecialty = rdr.GetString(5);
-        Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistTenure, stylistSpecialty, clientId, stylistId);
+        Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistTenure, clientId, stylistId);
         allStylists.Add(newStylist);
       }
       conn.Close();
@@ -176,7 +168,6 @@ namespace HairSalon.Models
                int clientId = 0;
                string stylistNumber = "";
                int stylistTenure = 0;
-               string stylistSpecialist = "";
 
                while (rdr.Read())
                {
@@ -185,10 +176,9 @@ namespace HairSalon.Models
                    clientId = rdr.GetInt32(2);
                    stylistNumber = rdr.GetString(3);
                    stylistTenure = rdr.GetInt32(4);
-                   stylistSpecialist = rdr.GetString(5);
                }
 
-               Stylist foundStylist = new Stylist(stylistName, stylistNumber, stylistTenure, stylistSpecialist, clientId, stylistId);
+               Stylist foundStylist = new Stylist(stylistName, stylistNumber, stylistTenure, clientId, stylistId);
 
                 conn.Close();
                 if (conn != null)
@@ -206,7 +196,7 @@ namespace HairSalon.Models
           conn.Open();
 
           var cmd = conn.CreateCommand() as MySqlCommand;
-          cmd.CommandText = @"Insert INTO stylists (name, client_id, number, tenure, specialty) VALUES (@stylistName, @client_id, @stylistNumber, @stylistTenure, @stylistSpecialty);";
+          cmd.CommandText = @"Insert INTO stylists (name, client_id, number, tenure) VALUES (@stylistName, @client_id, @stylistNumber, @stylistTenure);";
 
           MySqlParameter name = new MySqlParameter();
           name.ParameterName = "@stylistName";
@@ -227,11 +217,6 @@ namespace HairSalon.Models
           tenure.ParameterName = "@stylistTenure";
           tenure.Value = this._stylistTenure;
           cmd.Parameters.Add(tenure);
-
-          MySqlParameter specialty = new MySqlParameter();
-          specialty.ParameterName = "@stylistSpecialty";
-          specialty.Value = this._stylistSpecialty;
-          cmd.Parameters.Add(specialty);
 
           cmd.ExecuteNonQuery();
           _stylistId = (int) cmd.LastInsertedId;
