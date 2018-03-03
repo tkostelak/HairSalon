@@ -23,7 +23,6 @@ namespace HairSalon.Models
       _stylistNumber = stylistNumber;
       _stylistTenure = stylistTenure;
       _stylistId = stylistId;
-
     }
 
     public int GetClientId()
@@ -49,6 +48,33 @@ namespace HairSalon.Models
     public int GetStylistTenure()
     {
       return _stylistTenure;
+    }
+
+    public void EditStylist(string newStylistName)
+    {
+      MySqlConnection conn = DB.Connection();
+       conn.Open();
+       var cmd = conn.CreateCommand() as MySqlCommand;
+       cmd.CommandText = @"UPDATE stylists SET name = @newStylistName WHERE id = @thisId;";
+
+       MySqlParameter stylistName = new MySqlParameter();
+       stylistName.ParameterName = "@newStylistName";
+       stylistName.Value = newStylistName;
+       cmd.Parameters.Add(stylistName);
+
+       MySqlParameter stylistId = new MySqlParameter();
+       stylistId.ParameterName = "@thisId";
+       stylistId.Value = this._stylistId;
+       cmd.Parameters.Add(stylistId);
+
+       cmd.ExecuteNonQuery();
+       _stylistName = newStylistName;
+
+       conn.Close();
+       if (conn != null)
+       {
+           conn.Dispose();
+       }
     }
 
     public List<Client> GetClients()
