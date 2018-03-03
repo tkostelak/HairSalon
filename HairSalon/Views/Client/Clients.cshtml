@@ -4,28 +4,28 @@
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
-    <title>stylists-directory</title>
+    <title>clients-directory</title>
   </head>
   <body>
     <div class="container">
       <div class="jumbotron">
-        <h1>Stylist Directory</h1>
+        <h1>Client Directory</h1>
       </div>
       @if(Model!=null)
       {
-        foreach (var stylist in Model)
+        foreach (var client in Model)
         {
-          <h3><a href="/stylist/@stylist.GetStylistId()">@stylist.GetStylistName()</h3>
+          <h3>@client.GetClientName()</h3>
           <hr>
 
         }
       }
       <hr>
-      <form action="/stylist/delete" method="post">
-      <button type="submit" class="btn btn-danger">Clear All Stylists</button>
+      <form action="/client/delete" method="post">
+      <button type="submit" class="btn btn-danger">Delete all clients</button>
       </form>
       <hr>
-      <h6><a href="/stylist/add">Add another stylist to the directory!</a></h6>
+      <h6><a href="/stylist/add">Add client to directory</a></h6>
       <hr>
       <h6><a href="/">Back to home</a></h6>
     </div>

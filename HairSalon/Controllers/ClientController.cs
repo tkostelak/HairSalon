@@ -19,5 +19,19 @@ namespace HairSalon.Controllers
 
        return View("ClientConfirmation", clientList);
     }
+
+    [HttpGet("/client/view/all")]
+    public ActionResult ViewAllClients()
+    {
+      List<Client> clientList = Client.GetAllClients();
+      return View("Clients", clientList);
+    }
+
+    [HttpPost("/client/delete")]
+    public ActionResult DeleteAllClients()
+    {
+      Client.DeleteAllClients();
+      return View("Clients");
+    }
   }
 }
