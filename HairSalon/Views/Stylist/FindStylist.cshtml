@@ -33,8 +33,13 @@
           <input type="text" name="clientName">
           <input type="hidden" name="stylistId" value="@Model.GetStylistId()">
           <button type="submit" class="btn btn-success">Submit</button>
+        </form>
         <hr>
 
+      <hr>
+      <form action="/stylist/delete" method="post">
+      <button type="submit" class="btn btn-danger">Delete this stylist</button>
+      </form>
       <hr>
       <h3><a href="/stylist">Back to stylist directory</a></h3>
     </div>

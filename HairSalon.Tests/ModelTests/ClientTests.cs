@@ -20,7 +20,7 @@ namespace HairSalon.Tests
     }
 
     [TestMethod]
-    public void GetAll_DataBaseAtFirst_0()
+    public void GetClients_DataBaseAtFirst_0()
     {
       //Arrange
       string clientName = "James Taylor";

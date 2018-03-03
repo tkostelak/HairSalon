@@ -109,6 +109,28 @@ namespace HairSalon.Models
       return allStylists;
       }
 
+      public static void DeleteSpecificStylist(int id)
+      {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"DELETE from stylists WHERE id = @thisId;";
+
+        MySqlParameter thisId = new MySqlParameter();
+        thisId.ParameterName = "@thisId";
+        thisId.Value = id;
+        cmd.Parameters.Add(thisId);
+
+        cmd.ExecuteNonQuery();
+
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+      }
+
+      //This method will delete all stylists from the database, use with caution!
       public static void DeleteAllStylists()
       {
         MySqlConnection conn = DB.Connection();
