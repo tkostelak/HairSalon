@@ -19,6 +19,30 @@ namespace HairSalon.Models
       _clientId = clientId;
     }
 
+    //GETTERS AND SETTERS
+
+    public string GetClientName()
+    {
+      return _clientName;
+    }
+
+    public int GetClientId()
+    {
+      return _clientId;
+    }
+
+    public int GetStylistId()
+    {
+      return _stylistId;
+    }
+
+    public override int GetHashCode()
+    {
+      return this.GetClientId().GetHashCode();
+    }
+
+    //METHODS
+
     public override bool Equals(System.Object otherClient)
     {
       if (!(otherClient is Client))
@@ -33,7 +57,6 @@ namespace HairSalon.Models
         return (idEquality && clientEquality);
       }
     }
-
 
     public static List<Client> GetAllClients()
     {
@@ -117,27 +140,6 @@ namespace HairSalon.Models
           conn.Dispose();
         }
       return allClients;
-    }
-
-
-    public override int GetHashCode()
-    {
-      return this.GetClientId().GetHashCode();
-    }
-
-    public string GetClientName()
-    {
-      return _clientName;
-    }
-
-    public int GetClientId()
-    {
-      return _clientId;
-    }
-
-    public int GetStylistId()
-    {
-      return _stylistId;
     }
 
     public void SaveClient()

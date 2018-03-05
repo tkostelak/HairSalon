@@ -25,6 +25,7 @@ namespace HairSalon.Models
       _stylistId = stylistId;
     }
 
+    //GETTERS AND SETTERS
     public int GetClientId()
     {
       return _clientId;
@@ -49,6 +50,8 @@ namespace HairSalon.Models
     {
       return _stylistTenure;
     }
+
+    //METHODS
 
     public void EditStylist(string newStylistName)
     {

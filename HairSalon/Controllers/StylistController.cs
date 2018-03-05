@@ -66,7 +66,7 @@ namespace HairSalon.Controllers
     {
       Stylist thisStylist = Stylist.Find(id);
       thisStylist.EditStylist(Request.Form["updateStylistName"]);
-      return RedirectToAction("UpdateStylistConfirmation");
+      return View("StylistUpdateConfirmation");
     }
   }
 }

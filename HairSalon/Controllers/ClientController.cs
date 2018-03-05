@@ -60,7 +60,7 @@ namespace HairSalon.Controllers
     {
       Client thisClient = Client.Find(id);
       thisClient.EditClient(Request.Form["updateClientName"]);
-      return RedirectToAction("UpdateClientConfirmation");
+      return View ("UpdateClientConfirmation");
     }
   }
 }
