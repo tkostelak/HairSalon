@@ -33,5 +33,19 @@ namespace HairSalon.Controllers
       Client.DeleteAllClients();
       return View("Clients");
     }
+
+    [HttpGet("/client/{id}")]
+    public ActionResult FindClient(int id)
+    {
+      Client newClient = Client.Find(id);
+      return View(newClient);
+    }
+
+    [HttpPost("/client/{id}/delete")]
+    public ActionResult DeleteClient(int id)
+    {
+      Client.DeleteSpecificClient(id);
+      return View("ClientDelete");
+    }
   }
 }

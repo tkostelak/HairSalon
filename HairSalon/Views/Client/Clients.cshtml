@@ -15,7 +15,7 @@
       {
         foreach (var client in Model)
         {
-          <h3>@client.GetClientName()</h3>
+          <h3><a href="/client/@client.GetClientId()">@client.GetClientName()</h3>
           <hr>
 
         }

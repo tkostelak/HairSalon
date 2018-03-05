@@ -11,12 +11,12 @@
       <div class="jumbotron">
         @if(Model!=null)
         {
-          <h1>@Model.clientName()</h1>
+          <h1>@Model.GetClientName()</h1>
         }
       </div>
         <hr>
-          <form action="/stylist/delete" method="post">
-          <button type="submit" class="btn btn-danger">Delete client</button>
+          <form action="/client/@Model.GetClientId()/delete" method="post">
+          <button type="submit" class="btn btn-danger">Remove client</button>
           </form>
           <hr>
           <h3><a href="/stylist">Back to stylist directory</a></h3>

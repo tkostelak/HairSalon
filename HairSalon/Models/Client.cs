@@ -33,7 +33,7 @@ namespace HairSalon.Models
       }
     }
 
-//this method returns all stylists, and is mainly for testing.
+
     public static List<Client> GetAllClients()
     {
       List<Client> allClients = new List<Client> {};
@@ -59,7 +59,7 @@ namespace HairSalon.Models
       return allClients;
       }
 
-//This method returns clients that have same stylist id as current stylist user is viewing
+
     public List<Client> GetClients()
     {
       List<Client> allClients = new List<Client> {};
@@ -164,17 +164,38 @@ namespace HairSalon.Models
              }
       }
 
+      public static void DeleteSpecificClient(int id)
+      {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"DELETE from clients WHERE id = @thisId;";
+
+        MySqlParameter thisId = new MySqlParameter();
+        thisId.ParameterName = "@thisId";
+        thisId.Value = id;
+        cmd.Parameters.Add(thisId);
+
+        cmd.ExecuteNonQuery();
+
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+      }
+
       public static Client Find(int id)
       {
         MySqlConnection conn = DB.Connection();
              conn.Open();
 
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"SELECT * FROM clients WHERE stylistId = @thisId;";
+        cmd.CommandText = @"SELECT * FROM clients WHERE id = @thisId;";
 
         MySqlParameter thisId = new MySqlParameter();
           thisId.ParameterName = "@thisId";
-           thisId.Value = thisId;
+           thisId.Value = id;
            cmd.Parameters.Add(thisId);
 
            var rdr = cmd.ExecuteReader() as MySqlDataReader;
@@ -199,6 +220,6 @@ namespace HairSalon.Models
               }
 
              return foundClient;
-           }
-      }
+        }
+    }
 }
