@@ -1,0 +1,32 @@
+@using HairSalon.Models;
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <title>stylists-directory</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Specialty Directory</h1>
+      </div>
+      @if(Model!=null)
+      {
+        foreach (var specialty in Model)
+        {
+          <h3>@specialty.GetSpecialtyName()</h3>
+          <hr>
+        }
+      }
+      <hr>
+      <form action="/specialty/delete" method="post">
+      <button type="submit" class="btn btn-danger">Clear All Stylists</button>
+      </form>
+      <hr>
+      <h6><a href="/stylist/add">Add another specialty to the directory</a></h6>
+      <hr>
+      <h6><a href="/">Back to home</a></h6>
+    </div>
+  </body>
+</html>

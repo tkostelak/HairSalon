@@ -1,0 +1,27 @@
+@using HairSalon.Models;
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <title>add-specialty</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+      <h1>Specialty</h1>
+      </div>
+      <h4>Add a specialty to the site:</h4>
+        <form action="/specialty" method="post">
+          <label for="specialtyName">Specialty</label>
+          <input type="text" name="specialtyName">
+          <hr>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        <br>
+        <a href="/specialty">View Specialties</a>
+        <br>
+        <a href="/">Back to home</a>
+        </div>
+  </body>
+</html>
