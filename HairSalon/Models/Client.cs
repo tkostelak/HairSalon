@@ -16,6 +16,7 @@ namespace HairSalon.Models
     {
       _clientName = clientName;
       _stylistId = stylistId;
+      _clientId = clientId;
     }
 
     public override bool Equals(System.Object otherClient)
@@ -59,6 +60,32 @@ namespace HairSalon.Models
       return allClients;
       }
 
+      public void EditClient(string newClientName)
+      {
+        MySqlConnection conn = DB.Connection();
+         conn.Open();
+         var cmd = conn.CreateCommand() as MySqlCommand;
+         cmd.CommandText = @"UPDATE clients SET name = @newClientName WHERE id = @thisId;";
+
+         MySqlParameter clientName = new MySqlParameter();
+         clientName.ParameterName = "@newClientName";
+         clientName.Value = newClientName;
+         cmd.Parameters.Add(clientName);
+
+         MySqlParameter clientId = new MySqlParameter();
+         clientId.ParameterName = "@thisId";
+         clientId.Value = this._clientId;
+         cmd.Parameters.Add(clientId);
+
+         cmd.ExecuteNonQuery();
+         _clientName = newClientName;
+
+         conn.Close();
+         if (conn != null)
+         {
+             conn.Dispose();
+         }
+      }
 
     public List<Client> GetClients()
     {

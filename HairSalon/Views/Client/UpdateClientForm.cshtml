@@ -1,0 +1,26 @@
+@using HairSalon.Models;
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <title>update-client-info</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+      <h1>@Model.GetClientName()</h1>
+      </div>
+      <h4>Client update form:</h4>
+        <form action="/client/@Model.GetClientId()/update" method="post">
+          <label for="updateClientName">Name</label>
+          <input type="text" name="updateClientName">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        <br>
+        <a href="/stylist">View stylist directory</a>
+        <br>
+        <a href="/">Back to home</a>
+        </div>
+  </body>
+</html>

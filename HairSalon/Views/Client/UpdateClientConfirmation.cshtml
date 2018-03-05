@@ -1,0 +1,29 @@
+@using HairSalon.Models;
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <title>update-client-confirmation</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+      <h1>Client's name has been updated to: </h1>
+        <hr>
+        @if(Model!=null)
+        {
+          foreach(var client in Model)
+          {
+            <h2>@client.GetClientName()</h2>
+          }
+        }
+        <hr>
+        <br>
+        <br>
+        <a href="/stylist">Back to stylist directory.</a>
+        <br>
+        <a href="/">Back to home</a>
+        </div>
+  </body>
+</html>
