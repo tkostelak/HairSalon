@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 26, 2018 at 07:47 PM
--- Server version: 5.6.35
--- PHP Version: 7.0.15
+-- Generation Time: Mar 06, 2018 at 06:51 AM
+-- Server version: 5.6.34-log
+-- PHP Version: 7.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,6 +30,7 @@ USE `tyler_kostelak_test`;
 -- Table structure for table `clients`
 --
 
+DROP TABLE IF EXISTS `clients`;
 CREATE TABLE `clients` (
   `id` int(255) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -37,16 +40,53 @@ CREATE TABLE `clients` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `specialty`
+--
+
+DROP TABLE IF EXISTS `specialty`;
+CREATE TABLE `specialty` (
+  `id` int(255) NOT NULL,
+  `specialty_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `specialty_test`
+--
+
+DROP TABLE IF EXISTS `specialty_test`;
+CREATE TABLE `specialty_test` (
+  `id` int(255) NOT NULL,
+  `specialty_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stylists`
 --
 
+DROP TABLE IF EXISTS `stylists`;
 CREATE TABLE `stylists` (
   `id` int(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `client_id` int(255) NOT NULL,
   `number` varchar(255) NOT NULL,
-  `tenure` int(255) NOT NULL,
-  `specialty` varchar(255) NOT NULL
+  `tenure` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stylists_specialty`
+--
+
+DROP TABLE IF EXISTS `stylists_specialty`;
+CREATE TABLE `stylists_specialty` (
+  `id` int(255) NOT NULL,
+  `stylist_id` int(255) NOT NULL,
+  `specialty_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -60,9 +100,27 @@ ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `specialty`
+--
+ALTER TABLE `specialty`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `specialty_test`
+--
+ALTER TABLE `specialty_test`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `stylists`
 --
 ALTER TABLE `stylists`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stylists_specialty`
+--
+ALTER TABLE `stylists_specialty`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -75,10 +133,26 @@ ALTER TABLE `stylists`
 ALTER TABLE `clients`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `specialty`
+--
+ALTER TABLE `specialty`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `specialty_test`
+--
+ALTER TABLE `specialty_test`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `stylists_specialty`
+--
+ALTER TABLE `stylists_specialty`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
