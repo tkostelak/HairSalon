@@ -68,5 +68,7 @@ namespace HairSalon.Controllers
       thisStylist.EditStylist(Request.Form["updateStylistName"]);
       return View("StylistUpdateConfirmation");
     }
+
+  
+    }
   }
-}
