@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 06, 2018 at 06:51 AM
+-- Generation Time: Mar 07, 2018 at 07:29 AM
 -- Server version: 5.6.34-log
 -- PHP Version: 7.1.5
 
@@ -52,18 +52,6 @@ CREATE TABLE `specialty` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `specialty_test`
---
-
-DROP TABLE IF EXISTS `specialty_test`;
-CREATE TABLE `specialty_test` (
-  `id` int(255) NOT NULL,
-  `specialty_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `stylists`
 --
 
@@ -75,6 +63,33 @@ CREATE TABLE `stylists` (
   `number` varchar(255) NOT NULL,
   `tenure` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stylists_clients`
+--
+
+DROP TABLE IF EXISTS `stylists_clients`;
+CREATE TABLE `stylists_clients` (
+  `id` int(11) NOT NULL,
+  `stylist_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `stylists_clients`
+--
+
+INSERT INTO `stylists_clients` (`id`, `stylist_id`, `client_id`) VALUES
+(1, 5, 3),
+(2, 5, 1),
+(3, 10, 3),
+(4, 10, 1),
+(5, 15, 3),
+(6, 15, 1),
+(7, 20, 3),
+(8, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -106,15 +121,15 @@ ALTER TABLE `specialty`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `specialty_test`
---
-ALTER TABLE `specialty_test`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `stylists`
 --
 ALTER TABLE `stylists`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stylists_clients`
+--
+ALTER TABLE `stylists_clients`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -131,22 +146,22 @@ ALTER TABLE `stylists_specialty`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `specialty`
 --
 ALTER TABLE `specialty`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `specialty_test`
---
-ALTER TABLE `specialty_test`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `stylists_clients`
+--
+ALTER TABLE `stylists_clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `stylists_specialty`
 --
