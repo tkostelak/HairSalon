@@ -132,36 +132,36 @@ namespace HairSalon.Models
 
     public List<Client> GetClients()
     {
-      List<Client> allClients = new List<Client> {};
-      MySqlConnection conn = DB.Connection();
-      conn.Open();
-      var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM clients WHERE stylist_id = @stylistId;";
+     MySqlConnection conn = DB.Connection();
+     conn.Open();
+     MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+     cmd.CommandText = @"SELECT clients.* FROM stylists
+         JOIN stylists_clients ON (stylists.id = stylists_clients.stylist_id)
+         JOIN clients ON (stylists_clients.client_id = clients.id)
+         WHERE stylists.id = @StylistId;";
 
-      MySqlParameter stylistId = new MySqlParameter();
-      stylistId.ParameterName = "@stylistId";
-      stylistId.Value = this._stylistId;
-      cmd.Parameters.Add(stylistId);
+     MySqlParameter stylistId = new MySqlParameter();
+     stylistId.ParameterName = "@StylistId";
+     stylistId.Value = _stylistId;
+     cmd.Parameters.Add(stylistId);
 
-        var rdr = cmd.ExecuteReader() as MySqlDataReader;
-        while(rdr.Read())
-        {
-          int clientId = rdr.GetInt32(0);
-          string clientName = rdr.GetString(1);
-          int stylistID = rdr.GetInt32(2);
-          Client newClient = new Client(clientName, stylistID);
+     MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+     List<Client> clients = new List<Client>{};
 
-          allClients.Add(newClient);
-        }
-
-        conn.Close();
-        if (conn != null)
-        {
-          conn.Dispose();
-        }
-      return allClients;
+     while(rdr.Read())
+     {
+       int clientId = rdr.GetInt32(0);
+       string clientName = rdr.GetString(1);
+       Client newClient = new Client(clientName, clientId);
+       clients.Add(newClient);
+     }
+     conn.Close();
+     if (conn != null)
+     {
+         conn.Dispose();
+     }
+     return clients;
     }
-
     public static List<Stylist> GetAllStylists()
     {
       List<Stylist> allStylists = new List<Stylist> {};

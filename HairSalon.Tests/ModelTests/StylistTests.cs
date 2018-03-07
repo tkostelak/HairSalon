@@ -94,5 +94,29 @@ namespace HairSalon.Tests
       //Assert
       Assert.AreEqual(secondStylistName, result);
     }
+
+    [TestMethod]
+    public void AddClientStylist_AddsClientToStylistDatabase_True()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Jamie Stephens","509-200-2000", 3 , 0, 0);
+      testStylist.SaveStylist();
+
+      Client testClient = new Client("Bob Macpherson", 3 , 3 );
+      testClient.SaveClient();
+
+      Client testClient2 = new Client("Jilly Giles", 1, 1);
+      testClient2.SaveClient();
+
+      //Act
+      testStylist.AddClientStylist(testClient);
+      testStylist.AddClientStylist(testClient2);
+
+      List<Client> result = testStylist.GetClients();
+      List<Client> testList = new List<Client>{testClient, testClient2};
+
+      //Assert
+      CollectionAssert.AreEqual(testList, result);
+    }
   }
 }
