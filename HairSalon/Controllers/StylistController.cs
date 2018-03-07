@@ -35,7 +35,7 @@ namespace HairSalon.Controllers
     }
 
     [HttpGet("/stylist/{id}")]
-    public ActionResult FindStylist(string clientName, int stylistId, int id)
+    public ActionResult FindStylist(int id)
     {
       Dictionary<string, object> stylistData = new Dictionary<string, object>();
       List<Specialty> specialtyList = Specialty.GetAllSpecialties();
@@ -67,7 +67,7 @@ namespace HairSalon.Controllers
       return RedirectToAction("FindStylist", new { id = id});
     }
 
-    [HttpPost("/stylist/{id}/delete")]
+    [HttpPost("/stylist/delete/{id}")]
     public ActionResult DeleteStylist(int id)
     {
       Stylist.DeleteSpecificStylist(id);
@@ -93,9 +93,7 @@ namespace HairSalon.Controllers
     {
       Stylist thisStylist = Stylist.Find(id);
       thisStylist.EditStylist(Request.Form["updateStylistName"]);
-      return View("StylistUpdateConfirmation");
-    }
-
-
+      return RedirectToAction("Stylists" );
     }
   }
+}

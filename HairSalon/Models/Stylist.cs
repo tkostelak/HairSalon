@@ -12,14 +12,12 @@ namespace HairSalon.Models
     private string _stylistName;
     private string _stylistNumber;
     private int _stylistTenure;
-    private int _clientId;
     private int _stylistId;
     public List<Client> clientList = new List<Client>();
-
-    public Stylist(string stylistName, string stylistNumber, int stylistTenure, int clientId = 0, int stylistId = 0)
+    private int _clientId;
+    public Stylist(string stylistName, string stylistNumber, int stylistTenure, int stylistId = 0)
     {
       _stylistName = stylistName;
-      _clientId = clientId;
       _stylistNumber = stylistNumber;
       _stylistTenure = stylistTenure;
       _stylistId = stylistId;
@@ -29,6 +27,11 @@ namespace HairSalon.Models
     public int GetClientId()
     {
       return _clientId;
+    }
+
+    public void SetClientId(int clientId)
+    {
+      _clientId = clientId;
     }
 
     public int GetStylistId()
@@ -177,7 +180,7 @@ namespace HairSalon.Models
         int clientId = rdr.GetInt32(2);
         string stylistNumber = rdr.GetString(3);
         int stylistTenure = rdr.GetInt32(4);
-        Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistTenure, clientId, stylistId);
+        Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistTenure, stylistId);
         allStylists.Add(newStylist);
       }
       conn.Close();
@@ -278,7 +281,7 @@ namespace HairSalon.Models
                    stylistTenure = rdr.GetInt32(4);
                }
 
-               Stylist foundStylist = new Stylist(stylistName, stylistNumber, stylistTenure, clientId, stylistId);
+               Stylist foundStylist = new Stylist(stylistName, stylistNumber, stylistTenure, stylistId);
 
                 conn.Close();
                 if (conn != null)

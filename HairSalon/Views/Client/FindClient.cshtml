@@ -11,15 +11,15 @@
       <div class="jumbotron">
         @if(Model!=null)
         {
-          <h1>@Model.GetClientName()</h1>
+          <h1> @Model["newClient"].GetClientName() </h1>
         }
       </div>
         <hr>
-          <form action="/client/@Model.GetClientId()/delete" method="post">
-          <button type="submit" class="btn btn-danger">Remove client</button>
-          </form>
+        <form action='/client/delete/@Model["newClient"].GetClientId()' method="post">
+          <button class="btn btn-danger" type="submit">Delete Client</button>
+        </form>
           <hr>
-          <h3><a href="/stylist">Back to stylist directory</a></h3>
+          <h3><a href="/client/view/all">Back to client directory</a></h3>
           <br>
           <h3><a href="/">Back to home</a></h3>
     </div>

@@ -30,7 +30,7 @@
         <h3>Add Specialty:</h3>
           <form action='/stylist/specialty/add/@Model["newStylist"].GetStylistId()' method="post">
             <select name = "addSpecialty" required>
-              <option selected disabled hidden value=""></option>
+              <option selected disabled value="specialty"></option>
               @if(Model!=null)
               {
                 foreach (var specialty in Model ["specialtyList"])
@@ -44,7 +44,7 @@
         <h2>Add client to this stylist</h2>
         <form action='/stylist/client/add/@Model["newStylist"].GetStylistId()' method="post">
           <select name="addClient" required>
-            <option selected disabled hidden value=""></option>
+            <option selected disabled value="client"></option>
             @if (Model!=null)
             {
               foreach (var client in @Model["allClients"])
@@ -55,7 +55,10 @@
           </select>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
-        <hr>
+          <hr>
+          <form action='/stylist/delete/@Model["newStylist"].GetStylistId()' method="post">
+            <button class="btn btn-danger" type="submit">Delete Stylist</button>
+          </form>
           <hr>
           <h3><a href="/stylist">Back to stylist directory</a></h3>
           <br>

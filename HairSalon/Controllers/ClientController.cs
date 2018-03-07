@@ -38,11 +38,13 @@ namespace HairSalon.Controllers
     [HttpGet("/client/{id}")]
     public ActionResult FindClient(int id)
     {
+      Dictionary<string, object> clientData = new Dictionary<string, object>();
       Client newClient = Client.Find(id);
-      return View(newClient);
+      clientData.Add("newClient", newClient);
+      return View(clientData);
     }
 
-    [HttpPost("/client/{id}/delete")]
+    [HttpPost("/client/delete/{id}")]
     public ActionResult DeleteClient(int id)
     {
       Client.DeleteSpecificClient(id);
