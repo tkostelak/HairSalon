@@ -11,35 +11,51 @@
       <div class="jumbotron">
         @if(Model!=null)
         {
-          <h1>@Model.GetStylistName()</h1>
-          <h3>Phone Number: @Model.GetStylistNumber()</h3>
-          <h3>Years of Experience: @Model.GetStylistTenure()</h3>
+            <h1>@Model["newStylist"].GetStylistName()</h1>
+            <h3>@Model["newStylist"].GetStylistNumber()</h3>
+            <h3>Years of Experience: @Model["newStylist"].GetStylistTenure()</h3>
         }
       </div>
       <hr>
         <h3>Clients assigned to this stylist:</h3>
         @if(Model!=null)
         {
-          foreach(var client in Model.GetClients())
+          foreach (var client in Model["clientList"])
           {
-            <h5>@client.GetClientName()</h5>
+            <h5>@Model.["clientList"].GetClientName()</h5>
           }
-
         }
+      </form>
         <hr>
-      <button class="btn btn-info" type="submit">Add specialty</button>
-    </form>
+        <h3>Add Specialty:</h3>
+          <form action='/stylist/specialty/add/@Model["newStylist"].GetStylistId()' method="post">
+            <select name = "addSpecialty" required>
+              <option selected disabled hidden value=""></option>
+              @if(Model!=null)
+              {
+                foreach (var specialty in Model ["specialtyList"])
+                {
+                  <option value=@specialty.GetSpecialtyId()>@specialty.GetSpecialtyName()</option>
+                }
+              }
+            </select>
+        <button class="btn btn-info" type="submit">Add specialty</button>
+      </form>
         <h2>Add client to this stylist</h2>
-        <form action="/client/create" method="post">
-          <label for="clientName">Name</label>
-          <input type="text" name="clientName">
-          <input type="hidden" name="stylistId" value="@Model.GetStylistId()">
+        <form action='/stylist/client/add/@Model["newStylist"].GetStylistId()' method="post">
+          <select name="addClient" required>
+            <option selected disabled hidden value=""></option>
+            @if (Model!=null)
+            {
+              foreach (var client in @Model["allClients"])
+              {
+                <option value=@client.GetClientId()>@client.GetClientName()</option>
+              }
+            }
+          </select>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
         <hr>
-          <form action="/stylist/@Model.GetStylistId()/delete" method="post">
-          <button type="submit" class="btn btn-danger">Delete this stylist</button>
-          </form>
           <hr>
           <h3><a href="/stylist">Back to stylist directory</a></h3>
           <br>

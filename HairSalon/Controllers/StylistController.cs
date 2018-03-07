@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
 using System.Collections.Generic;
 using System;
+using MySql.Data.MySqlClient;
 
 namespace HairSalon.Controllers
 {
@@ -34,10 +35,36 @@ namespace HairSalon.Controllers
     }
 
     [HttpGet("/stylist/{id}")]
-    public ActionResult FindStylist(int id)
+    public ActionResult FindStylist(string clientName, int stylistId, int id)
+    {
+      Dictionary<string, object> stylistData = new Dictionary<string, object>();
+      List<Specialty> specialtyList = Specialty.GetAllSpecialties();
+      Stylist newStylist = Stylist.Find(id);
+      List<Client> allClients = Client.GetAllClients();
+      List<Client> clientList = newStylist.GetClients();
+      stylistData.Add("allClients", allClients);
+      stylistData.Add("clientList", clientList);
+      stylistData.Add("specialtyList", specialtyList);
+      stylistData.Add("newStylist", newStylist);
+      return View(stylistData);
+    }
+
+    [HttpPost("/stylist/specialty/add/{id}")]
+    public ActionResult AddStylistSpecialty(int id)
     {
       Stylist newStylist = Stylist.Find(id);
-      return View(newStylist);
+      Specialty newSpecialty = Specialty.FindSpecialty(int.Parse(Request.Form["addSpecialty"]));
+      newStylist.AddSpecialty(newSpecialty);
+      return RedirectToAction("FindStylist", new { id = id});
+    }
+
+    [HttpPost("/stylist/client/add/{id}")]
+    public ActionResult AddClientToStylist(int id)
+    {
+      Stylist newStylist = Stylist.Find(id);
+      Client newClient = Client.Find(int.Parse(Request.Form["addClient"]));
+      newStylist.AddClientStylist(newClient);
+      return RedirectToAction("FindStylist", new { id = id});
     }
 
     [HttpPost("/stylist/{id}/delete")]
@@ -69,6 +96,6 @@ namespace HairSalon.Controllers
       return View("StylistUpdateConfirmation");
     }
 
-  
+
     }
   }
