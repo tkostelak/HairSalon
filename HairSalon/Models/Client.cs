@@ -21,6 +21,11 @@ namespace HairSalon.Models
 
     //GETTERS AND SETTERS
 
+    public void SetClientId(int clientId)
+    {
+      _clientId = clientId;
+    }
+
     public string GetClientName()
     {
       return _clientName;

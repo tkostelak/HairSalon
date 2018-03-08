@@ -1,0 +1,34 @@
+@using HairSalon.Models;
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <title>add-client</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+      <h1>Add Client</h1>
+      </div>
+      <h4>Add a Client to the site</h4>
+        <form action= "/clients" method="post">
+          <label for="clientName">Name</label>
+          <input type="text" name="clientName">
+            <select name="addStylist" required>
+              <option selected disabled value="client"></option>
+              @if (Model!=null)
+              {
+                foreach (var stylist in @Model["stylistList"])
+                {
+                  <option value=@stylist.GetStylistId()>@stylist.GetStylistName()</option>
+                }
+              }
+            </select>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+        <br>
+        <a href="/">Back to home</a>
+        </div>
+  </body>
+</html>

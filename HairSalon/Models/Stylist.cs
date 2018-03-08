@@ -14,7 +14,6 @@ namespace HairSalon.Models
     private int _stylistTenure;
     private int _stylistId;
     public List<Client> clientList = new List<Client>();
-    private int _clientId;
     public Stylist(string stylistName, string stylistNumber, int stylistTenure, int stylistId = 0)
     {
       _stylistName = stylistName;
@@ -23,16 +22,6 @@ namespace HairSalon.Models
       _stylistId = stylistId;
     }
 
-    //GETTERS AND SETTERS
-    public int GetClientId()
-    {
-      return _clientId;
-    }
-
-    public void SetClientId(int clientId)
-    {
-      _clientId = clientId;
-    }
 
     public int GetStylistId()
     {
@@ -241,8 +230,8 @@ namespace HairSalon.Models
             Stylist newStylist = (Stylist) otherStylist;
             bool idEquality = (this.GetStylistId() == newStylist.GetStylistId());
             bool stylistEquality = (this.GetStylistName() == newStylist.GetStylistName());
-            bool clientEquality = this.GetClientId() == newStylist.GetClientId();
-            return (idEquality && stylistEquality && clientEquality);
+            // bool clientEquality = this.GetClientId() == newStylist.GetClientId();
+            return (idEquality && stylistEquality);
           }
         }
 
@@ -299,17 +288,12 @@ namespace HairSalon.Models
           conn.Open();
 
           var cmd = conn.CreateCommand() as MySqlCommand;
-          cmd.CommandText = @"Insert INTO stylists (name, client_id, number, tenure) VALUES (@stylistName, @client_id, @stylistNumber, @stylistTenure);";
+          cmd.CommandText = @"Insert INTO stylists (name, number, tenure) VALUES (@stylistName, @stylistNumber, @stylistTenure);";
 
           MySqlParameter name = new MySqlParameter();
           name.ParameterName = "@stylistName";
           name.Value = this._stylistName;
           cmd.Parameters.Add(name);
-
-          MySqlParameter clientId = new MySqlParameter();
-          clientId.ParameterName = "@client_id";
-          clientId.Value = this._clientId;
-          cmd.Parameters.Add(clientId);
 
           MySqlParameter number = new MySqlParameter();
           number.ParameterName = "@stylistNumber";

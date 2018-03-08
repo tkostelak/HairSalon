@@ -9,7 +9,7 @@ namespace HairSalon.Controllers
   public class ClientController : Controller
   {
     [HttpPost("/Client/Create")]
-     public ActionResult AddClient()
+     public ActionResult CreateClient()
     {
        string clientName = Request.Form["clientName"];
        int stylistId = Int32.Parse(Request.Form["stylistId"]);
@@ -51,6 +51,7 @@ namespace HairSalon.Controllers
       return View("ClientDelete");
     }
 
+
     [HttpGet("/client/{id}/update")]
     public ActionResult UpdateClientForm(int id)
     {
@@ -65,5 +66,25 @@ namespace HairSalon.Controllers
       thisClient.EditClient(Request.Form["updateClientName"]);
       return View ("UpdateClientConfirmation");
     }
+
+    [HttpGet("client/add/new")]
+    public ActionResult AddClient()
+    {
+      Dictionary<string, object> clientData = new Dictionary<string, object>();
+      List<Stylist> stylistList = Stylist.GetAllStylists();
+      clientData.Add("stylistList", stylistList);
+      return View(clientData);
+    }
+
+    [HttpPost("/clients")]
+    public ActionResult AddClientPost(int id)
+    {
+			string clientName = Request.Form["clientName"];
+      int stylistId = int.Parse(Request.Form["addStylist"]);
+      Client newClient = new Client(clientName, stylistId);
+      newClient.SaveClient();
+			List<Client> clientList = Client.GetAllClients();
+      return View("Clients", clientList);
+		}
   }
 }
