@@ -25,6 +25,16 @@
         }
         <hr>
         <h3> Add stylist to this specialty </h3>
+        <form action="/specialty/@Model["newSpecialty"].GetSpecialtyId()/stylist/new" method="post">
+          <label for="stylistId">Select a Stylist:</label>
+          <select name="stylistId">
+            @foreach(var stylist in @Model["allStylists"])
+            {
+              <option value="@stylist.GetStylistId()">@stylist.GetStylistName()</option>
+            }
+          </select>
+          <button type="submit" class="btn btn-info" name="button">Add</button>
+        </form>
         <hr>
         <a href="/specialty/delete/@Model["newSpecialty"].GetSpecialtyId()">Delete Specialty</a>
         </form>
