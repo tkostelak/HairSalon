@@ -10752,11 +10752,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tkost\\desktop\\hairsalon\\hairsalon.tests\\HairSalon.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\tkost\\desktop\\hairsalonnew\\hairsalon.tests\\HairSalon.Tests.csproj",
       "projectName": "HairSalon.Tests",
-      "projectPath": "C:\\Users\\tkost\\desktop\\hairsalon\\hairsalon.tests\\HairSalon.Tests.csproj",
+      "projectPath": "C:\\Users\\tkost\\desktop\\hairsalonnew\\hairsalon.tests\\HairSalon.Tests.csproj",
       "packagesPath": "C:\\Users\\tkost\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tkost\\desktop\\hairsalon\\hairsalon.tests\\obj\\",
+      "outputPath": "C:\\Users\\tkost\\desktop\\hairsalonnew\\hairsalon.tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tkost\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10773,8 +10773,8 @@
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {
-            "C:\\Users\\tkost\\desktop\\hairsalon\\HairSalon\\HairSalon.csproj": {
-              "projectPath": "C:\\Users\\tkost\\desktop\\hairsalon\\HairSalon\\HairSalon.csproj"
+            "C:\\Users\\tkost\\desktop\\hairsalonnew\\HairSalon\\HairSalon.csproj": {
+              "projectPath": "C:\\Users\\tkost\\desktop\\hairsalonnew\\HairSalon\\HairSalon.csproj"
             }
           }
         }

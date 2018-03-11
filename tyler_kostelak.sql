@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 07, 2018 at 07:27 AM
+-- Generation Time: Mar 11, 2018 at 10:34 PM
 -- Server version: 5.6.34-log
 -- PHP Version: 7.1.5
 
@@ -42,8 +42,7 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `name`, `stylist_id`) VALUES
-(21, 'Morty Smith', 7),
-(22, 'Summer Smith', 7);
+(13, 'Risotto Groupon', 0);
 
 -- --------------------------------------------------------
 
@@ -76,7 +75,6 @@ DROP TABLE IF EXISTS `stylists`;
 CREATE TABLE `stylists` (
   `id` int(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `client_id` int(255) NOT NULL,
   `number` varchar(255) NOT NULL,
   `tenure` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -85,8 +83,9 @@ CREATE TABLE `stylists` (
 -- Dumping data for table `stylists`
 --
 
-INSERT INTO `stylists` (`id`, `name`, `client_id`, `number`, `tenure`) VALUES
-(12, 'Pickle Rick', 0, '333-333-3333', 40);
+INSERT INTO `stylists` (`id`, `name`, `number`, `tenure`) VALUES
+(13, 'Simple Rick', '333-333-3333', 50),
+(14, 'Tiny Rick', '666-666-6666', 50);
 
 -- --------------------------------------------------------
 
@@ -113,28 +112,38 @@ INSERT INTO `stylists_clients` (`id`, `stylist_id`, `client_id`) VALUES
 (5, 9, 0),
 (6, 9, 0),
 (7, 10, 0),
-(8, 10, 0);
+(8, 10, 0),
+(9, 14, 0),
+(10, 13, 0),
+(11, 14, 0),
+(12, 14, 0),
+(13, 14, 0),
+(14, 14, 0),
+(15, 14, 0),
+(16, 14, 13),
+(18, 13, 13);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stylists_specialty`
+-- Table structure for table `stylists_specialties`
 --
 
-DROP TABLE IF EXISTS `stylists_specialty`;
-CREATE TABLE `stylists_specialty` (
+DROP TABLE IF EXISTS `stylists_specialties`;
+CREATE TABLE `stylists_specialties` (
   `id` int(255) NOT NULL,
   `stylist_id` int(255) NOT NULL,
   `specialty_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `stylists_specialty`
+-- Dumping data for table `stylists_specialties`
 --
 
-INSERT INTO `stylists_specialty` (`id`, `stylist_id`, `specialty_id`) VALUES
-(1, 9, 1),
-(2, 9, 1);
+INSERT INTO `stylists_specialties` (`id`, `stylist_id`, `specialty_id`) VALUES
+(7, 13, 1),
+(8, 14, 3),
+(9, 14, 1);
 
 --
 -- Indexes for dumped tables
@@ -165,9 +174,9 @@ ALTER TABLE `stylists_clients`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stylists_specialty`
+-- Indexes for table `stylists_specialties`
 --
-ALTER TABLE `stylists_specialty`
+ALTER TABLE `stylists_specialties`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -178,7 +187,7 @@ ALTER TABLE `stylists_specialty`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `specialty`
 --
@@ -188,17 +197,17 @@ ALTER TABLE `specialty`
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `stylists_clients`
 --
 ALTER TABLE `stylists_clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
--- AUTO_INCREMENT for table `stylists_specialty`
+-- AUTO_INCREMENT for table `stylists_specialties`
 --
-ALTER TABLE `stylists_specialty`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
+ALTER TABLE `stylists_specialties`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

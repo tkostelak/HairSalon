@@ -38,7 +38,7 @@ namespace HairSalon.Tests
     public void DeleteAllClients_DeletesAllClientsInDatabase_true()
     {
     //Arrange
-    Client testClient = new Client("Bob Macpherson", 3 , 3 );
+    Client testClient = new Client("Bob Macpherson", 3 );
     testClient.SaveClient();
 
     //Act
@@ -54,7 +54,7 @@ namespace HairSalon.Tests
     {
       //Arrange
       string firstClientName = "Pickle Rick";
-      Client testClient = new Client(firstClientName, 0, 0);
+      Client testClient = new Client(firstClientName, 0 );
       testClient.SaveClient();
       string secondClientName = "Tiny Rick";
 
