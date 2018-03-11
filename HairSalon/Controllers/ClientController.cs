@@ -22,7 +22,7 @@ namespace HairSalon.Controllers
     }
 
     [HttpGet("/client/view/all")]
-    public ActionResult ViewAllClients()
+    public ActionResult ViewAllClients(int clientId)
     {
       List<Client> clientList = Client.GetAllClients();
       return View("Clients", clientList);
@@ -35,36 +35,43 @@ namespace HairSalon.Controllers
       return View("Clients");
     }
 
-    [HttpGet("/client/{id}")]
-    public ActionResult FindClient(int id)
+    [HttpGet("/client/{clientId}")]
+    public ActionResult FindClient(int clientId)
     {
       Dictionary<string, object> clientData = new Dictionary<string, object>();
-      Client newClient = Client.Find(id);
+      Client newClient = Client.Find(clientId);
+      List<Client> allClients = Client.GetAllClients();
       clientData.Add("newClient", newClient);
+      clientData.Add("allClients", allClients);
       return View(clientData);
     }
 
-    [HttpPost("/client/delete/{id}")]
-    public ActionResult DeleteClient(int id)
+    [HttpGet("/client/delete")]
+    public ActionResult DeleteClient(int clientId)
     {
-      Client.DeleteSpecificClient(id);
-      return View("ClientDelete");
+      Client newClient = Client.Find(clientId);
+      int newId = newClient.GetClientId();
+      newClient.DeleteClient();
+      return View ("ClientDelete");
     }
 
-
-    [HttpGet("/client/{id}/update")]
-    public ActionResult UpdateClientForm(int id)
+    [HttpGet("/client/{clientId}/update")]
+    public ActionResult UpdateClientForm(int clientId)
     {
-      Client thisClient = Client.Find(id);
-      return View(thisClient);
+      Dictionary<string, object> clientData = new Dictionary<string, object>();
+      List<Client> clientList = Client.GetAllClients();
+      Client thisClient = Client.Find(clientId);
+      clientData.Add("clientList", clientList);
+      clientData.Add("thisClient", thisClient);
+      return View(clientData);
     }
 
-    [HttpPost("/client/{id}/update")]
-    public ActionResult UpdateClient(int id)
+    [HttpPost("/client/{clientId}")]
+    public ActionResult UpdateClientInfo(int clientId)
     {
-      Client thisClient = Client.Find(id);
-      thisClient.EditClient(Request.Form["updateClientName"]);
-      return View ("UpdateClientConfirmation");
+			Client newClient = Client.Find(clientId);
+      newClient.EditClient(Request.Form["updateClientName"]);
+      return RedirectToAction("FindClient", new {clientId = clientId});
     }
 
     [HttpGet("client/add/new")]
@@ -84,6 +91,7 @@ namespace HairSalon.Controllers
       Client newClient = new Client(clientName, stylistId);
       newClient.SaveClient();
 			List<Client> clientList = Client.GetAllClients();
+
       return View("Clients", clientList);
 		}
   }

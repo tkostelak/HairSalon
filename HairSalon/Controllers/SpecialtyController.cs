@@ -18,7 +18,7 @@ namespace HairSalon.Controllers
       public ActionResult Specialties()
       {
         List<Specialty> specialtyList = Specialty.GetAllSpecialties();
-        return View(specialtyList);
+        return View("SpecialtyDirectory", specialtyList);
       }
 
       [HttpPost("/specialty")]
@@ -30,7 +30,24 @@ namespace HairSalon.Controllers
         newSpecialty.SaveSpecialty();
         List<Specialty> specialtyList = Specialty.GetAllSpecialties();
 
-        return View("Specialties", specialtyList);
+        return View("SpecialtyDirectory", specialtyList);
       }
+
+      [HttpGet("/specialty/{id}")]
+      public ActionResult FindSpecialty(int id)
+      {
+        Dictionary<string, object> specialtyData = new Dictionary<string, object>();
+        List<Specialty> specialtyList = Specialty.GetAllSpecialties();
+        Specialty newSpecialty = Specialty.Find(id);
+        List<Stylist> stylistList = newSpecialty.GetStylists();
+        List<Stylist> allStylists = Stylist.GetAllStylists();
+        specialtyData.Add("allStylists", allStylists);
+        specialtyData.Add("stylistList", stylistList);
+        specialtyData.Add("specialtyList", specialtyList);
+        specialtyData.Add("newSpecialty", newSpecialty);
+        return View(specialtyData);
+      }
+
+
     }
   }

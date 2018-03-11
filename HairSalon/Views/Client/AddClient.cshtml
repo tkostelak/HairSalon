@@ -16,7 +16,7 @@
           <label for="clientName">Name</label>
           <input type="text" name="clientName">
             <select name="addStylist" required>
-              <option selected disabled value="client"></option>
+              @* <option selected disabled value=0></option> *@
               @if (Model!=null)
               {
                 foreach (var stylist in @Model["stylistList"])

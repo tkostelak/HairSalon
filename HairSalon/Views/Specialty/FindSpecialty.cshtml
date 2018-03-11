@@ -1,0 +1,34 @@
+@using HairSalon.Models;
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <title>specialty-specific</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        @if(Model!=null)
+        {
+          <h1> @Model["newSpecialty"].GetSpecialtyName() </h1>
+        }
+      </div>
+        <hr>
+        <h3>Stylists that have this specialty:</h3>
+        @if(Model["stylistList"].Count != 0)
+        {
+          @foreach(Stylist stylist in @Model["stylistList"])
+          {
+           <h3><a href="/stylist/@stylist.GetStylistId()"> @stylist.GetStylistName() </a></h3>
+          }
+        }
+        <a href="/specialty/delete/@Model["newSpecialty"].GetSpecialtyId()">Delete Specialty</a>
+        </form>
+          <hr>
+          <h3><a href="/specialty">Back to Specialty Directory</a></h3>
+          <br>
+          <h3><a href="/">Back to home</a></h3>
+    </div>
+  </body>
+</html>

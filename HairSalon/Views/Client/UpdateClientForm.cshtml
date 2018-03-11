@@ -9,10 +9,13 @@
   <body>
     <div class="container">
       <div class="jumbotron">
-      <h1>@Model.GetClientName()</h1>
+        @if(Model!=null)
+        {
+          <h1> @Model["thisClient"].GetClientName() </h1>
+        }
       </div>
       <h4>Client update form:</h4>
-        <form action="/client/@Model.GetClientId()/update" method="post">
+        <form action="/client/@Model["thisClient"].GetClientId()" method="post">
           <label for="updateClientName">Name</label>
           <input type="text" name="updateClientName">
           <button type="submit" class="btn btn-success">Submit</button>

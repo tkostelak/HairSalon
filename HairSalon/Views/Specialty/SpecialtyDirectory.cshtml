@@ -4,7 +4,7 @@
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
-    <title>stylists-directory</title>
+    <title>specialty-directory</title>
   </head>
   <body>
     <div class="container">
@@ -15,16 +15,14 @@
       {
         foreach (var specialty in Model)
         {
-          <h3>@specialty.GetSpecialtyName()</h3>
+          <h3><a href="/specialty/@specialty.GetSpecialtyId()">@specialty.GetSpecialtyName()</a></h3><a href="/specialty/@specialty.GetSpecialtyId()/update">Edit</a>
           <hr>
         }
       }
       <hr>
-      <form action="/specialty/delete" method="post">
-      <button type="submit" class="btn btn-danger">Clear All Stylists</button>
-      </form>
-      <hr>
-      <h6><a href="/stylist/add">Add another specialty to the directory</a></h6>
+      <form action="/client/delete" method="post">
+      <button type="submit" class="btn btn-danger">Delete all Specialties</button>
+    </form>
       <hr>
       <h6><a href="/">Back to home</a></h6>
     </div>
