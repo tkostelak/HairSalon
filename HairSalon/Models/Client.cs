@@ -12,10 +12,11 @@ namespace HairSalon.Models
     private string _clientName;
     private int _stylistId;
 
-    public Client(string clientName, int clientId =0)
+    public Client(string clientName, int clientId)
     {
       _clientName = clientName;
       _clientId = clientId;
+
     }
 
     //GETTERS AND SETTERS
@@ -131,7 +132,7 @@ namespace HairSalon.Models
         {
           int clientId = rdr.GetInt32(0);
           string clientName = rdr.GetString(1);
-          Client newClient = new Client( clientName );
+          Client newClient = new Client( clientName, clientId );
 
           allClients.Add(newClient);
         }
@@ -229,7 +230,7 @@ namespace HairSalon.Models
 
            int clientId = 0;
            string clientName = "";
-           int stylistId = 0;
+
 
            while (rdr.Read())
            {
@@ -237,7 +238,7 @@ namespace HairSalon.Models
                clientName = rdr.GetString(1);
            }
 
-           Client foundClient = new Client(clientName, stylistId);
+           Client foundClient = new Client(clientName, clientId);
 
               conn.Close();
               if (conn != null)

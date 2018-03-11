@@ -40,17 +40,18 @@ namespace HairSalon.Controllers
     {
       Dictionary<string, object> clientData = new Dictionary<string, object>();
       Client newClient = Client.Find(clientId);
+      Console.WriteLine(clientId);
       List<Client> allClients = Client.GetAllClients();
       clientData.Add("newClient", newClient);
       clientData.Add("allClients", allClients);
       return View(clientData);
     }
 
-    [HttpGet("/client/delete")]
+    [HttpGet("/client/delete/{clientId}")]
     public ActionResult DeleteClient(int clientId)
     {
       Client newClient = Client.Find(clientId);
-      int newId = newClient.GetClientId();
+      Console.WriteLine(clientId);
       newClient.DeleteClient();
       return View ("ClientDelete");
     }
