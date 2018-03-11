@@ -15,7 +15,7 @@
         }
       </div>
         <hr>
-        <h3>Stylists that have this specialty:</h3>
+        <h4>Stylists that have this specialty:</h4>
         @if(Model["stylistList"].Count != 0)
         {
           @foreach(Stylist stylist in @Model["stylistList"])
@@ -24,7 +24,7 @@
           }
         }
         <hr>
-        <h3> Add stylist to this specialty </h3>
+        <h4> Add stylist to this specialty </h4>
         <form action="/specialty/@Model["newSpecialty"].GetSpecialtyId()/stylist/new" method="post">
           <label for="stylistId">Select a Stylist:</label>
           <select name="stylistId">
@@ -39,9 +39,7 @@
         <a href="/specialty/delete/@Model["newSpecialty"].GetSpecialtyId()">Delete Specialty</a>
         </form>
           <hr>
-          <h3><a href="/specialty">Back to Specialty Directory</a></h3>
-          <br>
-          <h3><a href="/">Back to home</a></h3>
+          <h6><a href="/">Back to home</a></h6>
     </div>
   </body>
 </html>

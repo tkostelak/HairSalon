@@ -15,8 +15,16 @@
         }
       </div>
         <hr>
-        <a href="/client/delete/@Model["newClient"].GetClientId()">Delete Client</a>
-        </form>
+        <h3>Client is assigned to:</h3>
+        @if(Model!=null)
+          {
+            foreach (var stylist in Model["assignedStylist"])
+            {
+              <h5>@stylist.GetStylistName()</h5>
+            }
+          }
+          <hr>
+          <a href="/client/delete/@Model["newClient"].GetClientId()">Delete Client</a>
           <hr>
           <h3><a href="/client/view/all">Back to client directory</a></h3>
           <br>

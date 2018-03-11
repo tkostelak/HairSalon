@@ -192,26 +192,61 @@ namespace HairSalon.Models
       }
 
       public void DeleteClient()
-    {
-      MySqlConnection conn = DB.Connection();
-      conn.Open();
-
-      var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM clients WHERE id = @thisId";
-
-      MySqlParameter deleteId = new MySqlParameter();
-      deleteId.ParameterName = "@thisId";
-      deleteId.Value = this.GetClientId();
-      cmd.Parameters.Add(deleteId);
-
-      cmd.ExecuteNonQuery();
-
-      conn.Close();
-      if (conn != null)
       {
-        conn.Dispose();
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"DELETE FROM clients WHERE id = @thisId";
+
+        MySqlParameter deleteId = new MySqlParameter();
+        deleteId.ParameterName = "@thisId";
+        deleteId.Value = this.GetClientId();
+        cmd.Parameters.Add(deleteId);
+
+        cmd.ExecuteNonQuery();
+
+        conn.Close();
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
       }
-    }
+
+      public List<Stylist> GetClientStylist()
+      {
+       MySqlConnection conn = DB.Connection();
+       conn.Open();
+       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+       cmd.CommandText = @"SELECT stylists.* FROM clients
+           JOIN stylists_clients ON (clients.id = stylists_clients.client_id)
+           JOIN stylists ON (stylists_clients.stylist_id = stylists.id)
+           WHERE clients.id = @ClientId;";
+
+       MySqlParameter clientIdParameter = new MySqlParameter();
+       clientIdParameter.ParameterName = "@ClientId";
+       clientIdParameter.Value = _clientId;
+       cmd.Parameters.Add(clientIdParameter);
+
+       MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+       List<Stylist> stylists = new List<Stylist>{};
+
+       while(rdr.Read())
+       {
+         int stylistId = rdr.GetInt32(0);
+         string stylistName = rdr.GetString(1);
+         string stylistNumber = rdr.GetString(2);
+         int stylistTenure = rdr.GetInt32(3);
+         Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistTenure, stylistId);
+         stylists.Add(newStylist);
+       }
+       conn.Close();
+       if (conn != null)
+       {
+           conn.Dispose();
+       }
+       return stylists;
+      }
 
       public static Client Find(int id)
       {

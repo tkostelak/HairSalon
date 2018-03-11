@@ -41,9 +41,11 @@ namespace HairSalon.Controllers
       Dictionary<string, object> clientData = new Dictionary<string, object>();
       Client newClient = Client.Find(clientId);
       Console.WriteLine(clientId);
+      List<Stylist> assignedStylist = newClient.GetClientStylist();
       List<Client> allClients = Client.GetAllClients();
       clientData.Add("newClient", newClient);
       clientData.Add("allClients", allClients);
+      clientData.Add("assignedStylist", assignedStylist);
       return View(clientData);
     }
 

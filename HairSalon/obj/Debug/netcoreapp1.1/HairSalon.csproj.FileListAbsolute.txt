@@ -34,3 +34,13 @@ C:\Users\tkost\desktop\HAirSalon\hairsalon\obj\Debug\netcoreapp1.1\HairSalon.Ass
 C:\Users\tkost\desktop\HAirSalon\hairsalon\obj\Debug\netcoreapp1.1\HairSalon.AssemblyInfo.cs
 C:\Users\tkost\desktop\HAirSalon\hairsalon\obj\Debug\netcoreapp1.1\HairSalon.dll
 C:\Users\tkost\desktop\HAirSalon\hairsalon\obj\Debug\netcoreapp1.1\HairSalon.pdb
+C:\Users\tkost\desktop\hairsalonNEW\hairsalon\bin\Debug\netcoreapp1.1\HairSalon.deps.json
+C:\Users\tkost\desktop\hairsalonNEW\hairsalon\bin\Debug\netcoreapp1.1\HairSalon.runtimeconfig.json
+C:\Users\tkost\desktop\hairsalonNEW\hairsalon\bin\Debug\netcoreapp1.1\HairSalon.runtimeconfig.dev.json
+C:\Users\tkost\desktop\hairsalonNEW\hairsalon\bin\Debug\netcoreapp1.1\HairSalon.dll
+C:\Users\tkost\desktop\hairsalonNEW\hairsalon\bin\Debug\netcoreapp1.1\HairSalon.pdb
+C:\Users\tkost\desktop\hairsalonNEW\hairsalon\obj\Debug\netcoreapp1.1\HairSalon.csproj.CoreCompileInputs.cache
+C:\Users\tkost\desktop\hairsalonNEW\hairsalon\obj\Debug\netcoreapp1.1\HairSalon.AssemblyInfoInputs.cache
+C:\Users\tkost\desktop\hairsalonNEW\hairsalon\obj\Debug\netcoreapp1.1\HairSalon.AssemblyInfo.cs
+C:\Users\tkost\desktop\hairsalonNEW\hairsalon\obj\Debug\netcoreapp1.1\HairSalon.dll
+C:\Users\tkost\desktop\hairsalonNEW\hairsalon\obj\Debug\netcoreapp1.1\HairSalon.pdb

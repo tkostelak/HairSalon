@@ -17,15 +17,16 @@
         }
       </div>
       <hr>
-        <h3>Clients assigned to this stylist:</h3>
+        <h4>Clients assigned to this stylist:</h4>
         @if(Model!=null)
         {
           foreach (var client in Model["clientList"])
           {
-            <h5>@Model.["clientList"].GetClientName()</h5>
+            <h5>@client.GetClientName()</h5>
           }
         }
         <hr>
+        <h4>Specialties assigned to this stylist:</h4>
         @if(Model["specialtyStylistList"].Count != 0)
         {
           @foreach(Specialty specialty in @Model["specialtyStylistList"])
@@ -33,7 +34,8 @@
            <h5> @specialty.GetSpecialtyName() </h5>
           }
         }
-        <h3>Add Specialty:</h3>
+        <hr>
+        <h4>Add Specialty:</h4>
           <form action='/stylist/specialty/add/@Model["newStylist"].GetStylistId()' method="post">
             <select name = "addSpecialty" required>
               <option selected disabled value="specialty"></option>
@@ -47,7 +49,8 @@
             </select>
         <button class="btn btn-info" type="submit">Add specialty</button>
       </form>
-        <h2>Add client to this stylist</h2>
+      <hr>
+        <h4>Add client to this stylist</h4>
         <form action='/stylist/client/add/@Model["newStylist"].GetStylistId()' method="post">
           <select name="addClient" required>
             <option selected disabled value="client"></option>
@@ -66,9 +69,9 @@
             <button class="btn btn-danger" type="submit">Delete Stylist</button>
           </form>
           <hr>
-          <h3><a href="/stylist">Back to stylist directory</a></h3>
+          <h6><a href="/stylist">Back to stylist directory</a></h6>
           <br>
-          <h3><a href="/">Back to home</a></h3>
+          <h6><a href="/">Back to home</a></h6>
     </div>
   </body>
 </html>
