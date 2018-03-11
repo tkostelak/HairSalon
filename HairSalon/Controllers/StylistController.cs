@@ -42,6 +42,8 @@ namespace HairSalon.Controllers
       Stylist newStylist = Stylist.Find(id);
       List<Client> allClients = Client.GetAllClients();
       List<Client> clientList = newStylist.GetClients();
+      List<Specialty> specialtyStylistList = newStylist.GetStylistSpecialties();
+      stylistData.Add("specialtyStylistList", specialtyStylistList);
       stylistData.Add("allClients", allClients);
       stylistData.Add("clientList", clientList);
       stylistData.Add("specialtyList", specialtyList);

@@ -25,8 +25,14 @@
             <h5>@Model.["clientList"].GetClientName()</h5>
           }
         }
-      </form>
         <hr>
+        @if(Model["specialtyStylistList"].Count != 0)
+        {
+          @foreach(Specialty specialty in @Model["specialtyStylistList"])
+          {
+           <h5> @specialty.GetSpecialtyName() </h5>
+          }
+        }
         <h3>Add Specialty:</h3>
           <form action='/stylist/specialty/add/@Model["newStylist"].GetStylistId()' method="post">
             <select name = "addSpecialty" required>

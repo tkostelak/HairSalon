@@ -20,9 +20,12 @@
         {
           @foreach(Stylist stylist in @Model["stylistList"])
           {
-           <h3><a href="/stylist/@stylist.GetStylistId()"> @stylist.GetStylistName() </a></h3>
+           <h5><a href="/stylist/@stylist.GetStylistId()"> @stylist.GetStylistName() </a></h5>
           }
         }
+        <hr>
+        <h3> Add stylist to this specialty </h3>
+        <hr>
         <a href="/specialty/delete/@Model["newSpecialty"].GetSpecialtyId()">Delete Specialty</a>
         </form>
           <hr>
